@@ -14,8 +14,6 @@ soup=BeautifulSoup(htmlcontent,'html.parser')
 
 placelist=soup.find(id='tours-main-holder')
 place=placelist.find_all(class_='details-block')
-
-
 print(place[0].find(class_="target-link").get_text())
 
 placename=[places.find(class_='target-link').get_text() for places in place]
@@ -26,4 +24,4 @@ bookmundi=pd.DataFrame({
 })
 print(bookmundi)
 
-bookmundi.to_csv('bookmundi.csv')
+bookmundi.to_csv('bookmundi/bookmundi.csv')
