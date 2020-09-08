@@ -8,20 +8,18 @@ visiting_nepal = []
 for x in range(1,45):
     url="https://www.bookmundi.com/nepal?page="
     r=  requests.get(url+str(x))
-
     htmlcontent=r.content
-
     soup=BeautifulSoup(htmlcontent,'html.parser')
-
     placelist=soup.find(id='tours-main-holder')
     place=placelist.find_all(class_='text-details')
-    print(place[0].find('a',class_="target-link").get_text())
-
-    placename=[places.find('a',class_="target-link").get_text() for places in place]
+    for places in place:
+        placename=places.find('h4').get_text()
+        tourtype=places.find(class_="txt").get_text()
 
 
     bookmundi={
-        'Thay':placename
+        'Thay':placename,
+        'tour':tourtype
     }
     visiting_nepal.append(bookmundi)
 
